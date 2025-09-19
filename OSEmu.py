@@ -13,8 +13,6 @@ def repl():
         print("Имя скрипта: ", arguments[0])
         print("Переданные аргументы: ", *arguments[1:])
 
-        # VFS = (os.path.basename(sys.argv[1]) + os.path.dirname(__file__)[2:]) if len(sys.argv[1:]) != 0 \
-        #     else os.path.dirname(__file__) 
         VFS = arguments[1]
     except IndexError:
         print("Введено неверное количество аргументов.")
