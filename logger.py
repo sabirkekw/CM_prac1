@@ -4,10 +4,14 @@ from datetime import datetime
 import os
 
 class LoggerXML:
-    def __init__(self, log_file = "command_log.xml"):
+    def __init__(self, log_file = "command_log.xml", log_directory="."):
         self.log_file = log_file
         root = ET.Element("command_log")
         tree = ET.ElementTree(root)
+
+        os.makedirs(log_directory, exist_ok=True)
+        self.log_file = os.path.join(log_directory, log_file)
+
         self._write_xml(tree)
     
     def _write_xml(self, tree):
@@ -38,6 +42,8 @@ class LoggerXML:
         
         elem.set("name", command_name)
         elem.set("timestamp", datetime.now().isoformat())
+        elem.set("error", "") if is_command \
+            else elem.set("error", "Unknown command")
 
         # Записываем обратно в файл
         self._write_xml(tree)

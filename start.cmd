@@ -1,1 +1,1 @@
-python OSEmu.py VFS.ini
+python OSEmu.py VFS:\dir D:\projects\log D:\projects\ConfigManagement\testscript
