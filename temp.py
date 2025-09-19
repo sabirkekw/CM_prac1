@@ -2,24 +2,19 @@ import getpass
 import os
 import sys
 import socket
-import xml.etree.ElementTree as ET
-from logger import LoggerXML
 
 def repl():
 
     print("Имя скрипта: ", sys.argv[0])
     print("Переданные аргументы: ", *sys.argv[1:])
 
-    VFS = (os.path.basename(sys.argv[1]) + os.path.dirname(__file__)[2:]) if len(sys.argv[1:]) != 0 \
-        else os.path.dirname(__file__) 
-    
-    logger = LoggerXML("command_log.xml")
+    VFS = ""
 
     while True:
 
         is_command = True
 
-        cmdinput = input('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + VFS + ": ")
+        cmdinput = input('~$'+getpass.getuser()+'.'+socket.gethostname()+ "" + VFS + ": ")
 
         command = cmdinput.split()[0]
         args = cmdinput.split()[1:]
@@ -29,7 +24,6 @@ def repl():
                 args[i] = os.environ.get(arg[1:])
             
         if command == ('exit'):
-            logger.log_command(cmdinput, is_command)
             return
         elif command == "ls":
             print(command, "\n", *args)
@@ -41,9 +35,6 @@ def repl():
             print(os.environ.get(command[1:]))
                 
         else:
-            is_command = False
             print("Неизвестная команда.")
-
-        logger.log_command(cmdinput, is_command)
         
 repl()

@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<command_log>
+  <command name="ls" timestamp="2025-09-19T06:01:32.575537"/>
+  <command name="cd" timestamp="2025-09-19T06:01:33.022749"/>
+  <error name="dsadsa" timestamp="2025-09-19T06:01:34.974625"/>
+  <command name="exit" timestamp="2025-09-19T06:01:35.982458"/>
+</command_log>
