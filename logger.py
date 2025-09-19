@@ -41,5 +41,3 @@ class LoggerXML:
 
         # Записываем обратно в файл
         self._write_xml(tree)
-        
-    
