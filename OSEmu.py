@@ -4,6 +4,7 @@ import sys
 import socket
 import xml.etree.ElementTree as ET
 from logger import LoggerXML
+from vfs__xml import *
 
 def repl():
     file = False
@@ -13,7 +14,11 @@ def repl():
         print("Имя скрипта: ", arguments[0])
         print("Переданные аргументы: ", *arguments[1:])
 
-        VFS = arguments[1]
+        vfs = "VFS:/"
+        vfs_dict = parse_vfs_xml(arguments[1])
+        print(vfs_dict)
+        vfs += vfs_dict.get('name')
+
     except IndexError:
         print("Введено неверное количество аргументов.")
         return
@@ -32,10 +37,10 @@ def repl():
         is_command = True
 
         if file==False:
-            cmdinput = input('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + VFS + ": ")
+            cmdinput = input('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + vfs + ": ")
         else:
             cmdinput = f.readline()
-            print('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + VFS + ": " + cmdinput.strip())
+            print('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + vfs + ": " + cmdinput.strip())
 
         command = cmdinput.split()[0]
         args = cmdinput.split()[1:]

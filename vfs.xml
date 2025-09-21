@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<VFS>
+  <folder name="root" path="/">
+    <folder name="home" path="/home">
+      <folder name="user" path="/home/user">
+        <folder name="docs" path="/home/user/docs">
+          <file name="readme.txt" path="/home/user/docs/readme.txt"/>
+          <file name="notes.txt" path="/home/user/docs/notes.txt"/>
+        </folder>
+        <file name="config.ini" path="/home/user/config.ini"/>
+      </folder>
+    </folder>
+    <folder name="etc" path="/etc">
+      <file name="hosts" path="/etc/hosts"/>
+    </folder>
+  </folder>
+</VFS>
