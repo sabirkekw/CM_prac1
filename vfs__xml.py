@@ -5,7 +5,6 @@ def parse_element(element, parent_path):
             'type': element.tag,
             'name': element.attrib.get('name', ''),
             'path': element.attrib.get('path', ''),
-            'size': element.attrib.get('size', '0')
         }
         
         if element.tag == 'folder':
@@ -27,7 +26,6 @@ def parse_vfs_xml(xml_path):
         'children': {}
     }
     
-    # Start parsing from the root folder
     root_folder = root.find('folder')
     if root_folder is not None:
         vfs_structure = parse_element(root_folder, '/')

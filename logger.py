@@ -15,27 +15,20 @@ class LoggerXML:
         self._write_xml(tree)
     
     def _write_xml(self, tree):
-        #"""Записывает XML в файл с красивым форматированием"""
+
         rough_string = ET.tostring(tree.getroot(), 'utf-8')
         reparsed = minidom.parseString(rough_string)
         pretty_xml = reparsed.toprettyxml(indent="  ")
         
-        # Убираем лишние пустые строки, которые добавляет toprettyxml
         pretty_xml = os.linesep.join([s for s in pretty_xml.splitlines() if s.strip()])
         
         with open(self.log_file, 'w', encoding='utf-8') as f:
             f.write(pretty_xml)
     
     def log_command(self, command_name, is_command):
-        #"""Логирует выполнение команды, добавляя ее в конец файла"""
-        
-        # Читаем существующий XML
-        
+
         tree = ET.parse(self.log_file)
         root = tree.getroot()
-        
-        
-        # Создаем элемент команды с временной меткой
         
         elem = ET.SubElement(root, "command") if is_command \
             else ET.SubElement(root, "error")
@@ -45,5 +38,4 @@ class LoggerXML:
         elem.set("error", "") if is_command \
             else elem.set("error", "Unknown command")
 
-        # Записываем обратно в файл
         self._write_xml(tree)
