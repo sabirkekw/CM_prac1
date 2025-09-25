@@ -1,1 +1,1 @@
-python OSEmu.py .\vfs.xml D:\projects\ConfigManagement\log .\testscript
+python OSEmu.py .\vfs.xml D:\projects\ConfigManagement\log

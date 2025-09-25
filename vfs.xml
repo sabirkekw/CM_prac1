@@ -1,17 +1,17 @@
 <?xml version="1.0" ?>
 <VFS>
-  <folder name="root" path="/">
-    <folder name="home" path="/home">
-      <folder name="user" path="/home/user">
-        <folder name="docs" path="/home/user/docs">
-          <file name="readme.txt" path="/home/user/docs/readme.txt"/>
-          <file name="notes.txt" path="/home/user/docs/notes.txt"/>
+  <folder name="root" path="root/">
+    <folder name="home" path="root/home">
+      <folder name="user" path="root/home/user">
+        <folder name="docs" path="root/home/user/docs">
+          <file name="readme.txt" path="root/home/user/docs/readme.txt" content = "a\nb"/>
+          <file name="notes.txt" path="root/home/user/docs/notes.txt" content = "text1\ntext2"/>
         </folder>
-        <file name="config.ini" path="/home/user/config.ini"/>
+        <file name="config.ini" path="root/home/user/config.ini" content = "configuration"/>
       </folder>
     </folder>
-    <folder name="etc" path="/etc">
-      <file name="hosts" path="/etc/hosts"/>
+    <folder name="etc" path="root/etc">
+      <file name="hosts" path="root/etc/hosts" content = "dsdss"/>
     </folder>
   </folder>
 </VFS>

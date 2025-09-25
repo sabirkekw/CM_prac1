@@ -14,10 +14,9 @@ def repl():
         print("Имя скрипта: ", arguments[0])
         print("Переданные аргументы: ", *arguments[1:])
 
-        vfs = "VFS:/"
         vfs_dict = parse_vfs_xml(arguments[1])
-        print(vfs_dict)
-        vfs += vfs_dict.get('name')
+        #print(vfs_dict)
+        current_directory = vfs_dict.get('path')
 
     except IndexError:
         print("Введено неверное количество аргументов.")
@@ -33,31 +32,33 @@ def repl():
         file = True
 
     while True:
-
         is_command = True
 
         if file==False:
-            cmdinput = input('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + vfs + ": ")
+            cmdinput = input('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + current_directory + "> ")
         else:
             cmdinput = f.readline()
-            print('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + vfs + ": " + cmdinput.strip())
+            print('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + current_directory + "> " + cmdinput.strip())
 
         command = cmdinput.split()[0]
         args = cmdinput.split()[1:]
 
         for i, arg in enumerate(args):
             if arg[0] == "$":
-                args[i] = os.environ.get(arg[1:])
-            
+                args[i] = os.environ.get(arg[1:]) 
         if command == ('exit'):
             logger.log_command(cmdinput, is_command)
             return
         elif command == "ls":
-            print(command, *args)
+            ls(vfs_dict, args, current_directory)
         elif command == "cd":
-            print(command, *args)
-
-        
+            current_directory = cd(vfs_dict, args, current_directory)
+        elif command == "tree":
+            tree(vfs_dict, args, current_directory)
+        elif command == "uname":
+            uname(args)
+        elif command == "tac":
+            tac(vfs_dict, args, current_directory)
         elif command[0] == '$':
             print("Неизвестная команда.")
             print(os.environ.get(command[1:]))
