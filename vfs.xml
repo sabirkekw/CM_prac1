@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directory name="root/" path="/">
+    <directory name="bin" path="/bin">
+        <file name="ls" path="/bin/ls"/>
+        <file name="cp" path="/bin/cp"/>
+        <file name="mv" path="/bin/mv"/>
+    </directory>
+    
+    <directory name="etc" path="/etc">
+        <file name="passwd" path="/etc/passwd"/>
+        <file name="hosts" path="/etc/hosts"/>
+        <file name="config" path="/etc/config"/>
+    </directory>
+    
+    <directory name="home" path="/home">
+        <directory name="john" path="/home/john">
+            <directory name="Documents" path="/home/john/Documents">
+                <file name="report.pdf" path="/home/john/Documents/report.pdf"/>
+                <file name="budget.xlsx" path="/home/john/Documents/budget.xlsx"/>
+                <file name="notes.txt" path="/home/john/Documents/notes.txt"/>
+            </directory>
+            
+            <directory name="Pictures" path="/home/john/Pictures">
+                <file name="photo1.jpg" path="/home/john/Pictures/photo1.jpg"/>
+                <file name="photo2.png" path="/home/john/Pictures/photo2.png"/>
+            </directory>
+            
+            <file name="readme.txt" path="/home/john/readme.txt"/>
+        </directory>
+        
+        <directory name="alice" path="/home/alice">
+            <directory name="Projects" path="/home/alice/Projects">
+                <file name="main.py" path="/home/alice/Projects/main.py"/>
+                <file name="config.json" path="/home/alice/Projects/config.json"/>
+            </directory>
+        </directory>
+    </directory>
+    
+    <directory name="tmp" path="/tmp">
+        <file name="temp1.tmp" path="/tmp/temp1.tmp"/>
+        <file name="cache.dat" path="/tmp/cache.dat"/>
+    </directory>
+    
+    <directory name="var" path="/var">
+        <directory name="log" path="/var/log">
+            <file name="system.log" path="/var/log/system.log"/>
+            <file name="app.log" path="/var/log/app.log"/>
+        </directory>
+    </directory>
+    
+    <file name="readme" path="/readme"/>
+</directory>

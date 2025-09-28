@@ -13,14 +13,15 @@ def repl():
         print("Имя скрипта: ", arguments[0])
         print("Переданные аргументы: ", *arguments[1:])
 
-        VFS = arguments[1]
+        VFS = ET.parse(arguments[1]).getroot()
+        vfs_name = VFS.attrib["name"]
     except IndexError:
         print("Введено неверное количество аргументов.")
         return
     
     address = arguments[2] if len(arguments)>=3 \
         else '.'
-
+    print(address)
     logger = LoggerXML("command_log.xml",address)
     
     if len(arguments)>=4:
@@ -32,10 +33,10 @@ def repl():
         is_command = True
 
         if file==False:
-            cmdinput = input('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + VFS + ": ")
+            cmdinput = input('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + vfs_name + ": ")
         else:
             cmdinput = f.readline()
-            print('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + VFS + ": " + cmdinput.strip())
+            print('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + vfs_name + ": " + cmdinput.strip())
 
         command = cmdinput.split()[0]
         args = cmdinput.split()[1:]
