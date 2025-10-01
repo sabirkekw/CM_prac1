@@ -2,8 +2,9 @@ import getpass
 import os
 import sys
 import socket
-import xml.etree.ElementTree as ET
+import lxml.etree as ET
 from logger import LoggerXML
+from command_handle import *
 
 def repl():
     file = False
@@ -14,7 +15,8 @@ def repl():
         print("Переданные аргументы: ", *arguments[1:])
 
         VFS = ET.parse(arguments[1]).getroot()
-        vfs_name = VFS.attrib["name"]
+        current_directory = VFS.get("name")
+        #current_directory = "root/home/john"
     except IndexError:
         print("Введено неверное количество аргументов.")
         return
@@ -33,10 +35,10 @@ def repl():
         is_command = True
 
         if file==False:
-            cmdinput = input('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + vfs_name + ": ")
+            cmdinput = input('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + current_directory + ": ")
         else:
             cmdinput = f.readline()
-            print('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + vfs_name + ": " + cmdinput.strip())
+            print('~$'+getpass.getuser()+'.'+socket.gethostname()+ " " + current_directory + ": " + cmdinput.strip())
 
         command = cmdinput.split()[0]
         args = cmdinput.split()[1:]
@@ -49,9 +51,17 @@ def repl():
             logger.log_command(cmdinput, is_command)
             return
         elif command == "ls":
-            print(command, *args)
+            Ls(current_directory,VFS,args).handle()
         elif command == "cd":
-            print(command, *args)
+            current_directory = Cd(current_directory,VFS,args).handle()
+        elif command == "tree":
+            Tree(current_directory,VFS,args).handle()
+        elif command == "uname":
+            Uname(current_directory,VFS,args).handle()
+        elif command == "tac":
+            Tac(current_directory,VFS,args).handle()
+        elif command == "cat":
+            Cat(current_directory,VFS,args).handle()
 
         
         elif command[0] == '$':

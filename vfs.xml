@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<directory name="root/" path="/">
+<directory name="root" path="/">
     <directory name="bin" path="/bin">
         <file name="ls" path="/bin/ls"/>
         <file name="cp" path="/bin/cp"/>
@@ -15,7 +15,7 @@
     <directory name="home" path="/home">
         <directory name="john" path="/home/john">
             <directory name="Documents" path="/home/john/Documents">
-                <file name="report.pdf" path="/home/john/Documents/report.pdf"/>
+                <file name="report.pdf" path="/home/john/Documents/report.pdf">some text &#xA;sometext2</file>
                 <file name="budget.xlsx" path="/home/john/Documents/budget.xlsx"/>
                 <file name="notes.txt" path="/home/john/Documents/notes.txt"/>
             </directory>
